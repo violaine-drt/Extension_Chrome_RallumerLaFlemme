@@ -1,10 +1,18 @@
+console.log("Coucou ici la popup")
+
+function fonctionTest(){
+  console.log("le test OK")
+}
+
+// Les fonctions setAlarm et setSecondAlarm créent des alarmes et transforment la valeur des boutons en temps.
 function setAlarm(event) {
   const minutes = parseFloat(event.target.value);
   chrome.action.setBadgeText({ text: 'ON' });
-  chrome.alarms.create({ delayInMinutes: minutes });
+  chrome.alarms.create("mainAlarm",{ delayInMinutes: minutes });
   chrome.storage.sync.set({ minutes: minutes });
   window.close();
 }
+
 
 function clearAlarm() {
   chrome.action.setBadgeText({ text: '' });
@@ -12,16 +20,31 @@ function clearAlarm() {
   window.close();
 }
 
-// An Alarm delay of less than the minimum 1 minute will fire
-// in approximately 1 minute increments if released
+// // Essai pour identifier la nature de l'objet alarme + récupérer le nom de l'alarme rappel
+// const rappel = (chrome.alarms.get(name = "rappel"));
+// console.log(rappel)
+// console.log(typeof(rappel))
 
+
+//Fonction de timer à partir de la valeur du bouton cliquéé
+const timerValue = document.getElementById('sampleMinute').value*60000;
+function setTimer() {setTimeout(fonctionTest,timerValue + 10000)};
+
+// Sont récupérés les clicks des boutons de la popup. 
+//La fonction setAlarm déclenche un timer à partir de la valeur des boutons.
+// La fonction setTimer lanche un second timer de rappel
+
+
+console.log(chrome.alarms)
 document.getElementById('sampleMinute').addEventListener('click', setAlarm);
 document.getElementById('min15').addEventListener('click', setAlarm);
 document.getElementById('min30').addEventListener('click', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
+document.getElementById('sampleMinute').addEventListener('click', setTimer());
 
 
 
+// Gère le remplacement des images de la page (lien avec content)
 
 const btnDog = document.getElementById("buttonDog")
 if (btnDog) {
