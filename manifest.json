@@ -1,24 +1,28 @@
 {
-  "manifest_version":3 ,
-  "name": "Contre Productive",
-  "description": "Il faut faire bcp de siestes",
-  "version": "0.0.1",
-  "icons":{
-      "16": "icon.png",
-      "48": "icon.png",
-      "128": "icon.png"
-  },
-  "action": {
-      "default_popup":"popup.html",
-      "permissions": ["activeTab", "scripting","tabs"],
+    "manifest_version":3 ,
+    "name": "Contre Productive",
+    "description": "Il faut faire bcp de siestes",
+    "version": "0.0.1",
+    "permissions": ["alarms", "notifications", "storage"], 
+    "icons":{
+        "16": "Images/sablier.png",
+        "48": "Images/sablier.png",
+        "128": "Images/sablier.png"
+    },
+    
       "background": {
-          "service_worker": "background.js"
-      }
-  },
-  "content_scripts": [
-      {
-      "matches":["<all_urls>"],
-      "js": ["scripts/content.js"]
-      }
-  ]
-}
+      "service_worker": "background.js"
+      }, 
+  
+    "action": {
+        "default_popup":"popup.html",
+        "permissions": ["activeTab", "scripting","tabs"]
+        
+    },
+    "content_scripts": [
+        {
+        "matches":["<all_urls>"],
+        "js": ["scripts/content.js"]
+        }
+    ]
+  }
