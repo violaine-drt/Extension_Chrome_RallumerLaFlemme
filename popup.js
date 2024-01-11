@@ -1,7 +1,10 @@
 console.log("Coucou ici la popup")
 
-function fonctionTest(){
+async function fonctionTest(){
   console.log("le test OK")
+  const [tab] = await chrome.tabs.query({ active: true });
+  console.log(tab)
+  const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
 }
 
 // Les fonctions setAlarm et setSecondAlarm créent des alarmes et transforment la valeur des boutons en temps.
