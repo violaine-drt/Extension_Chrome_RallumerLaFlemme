@@ -3,6 +3,7 @@ console.log("ici, vous êtes dans le content")
 chrome.runtime.onMessage.addListener(async (request, sender, response) => {
     // console.log(request);
     if (request.action == "CHANGE_IMAGE_DOG") {
+        
         let linkImgDog=[
         "https://yt3.googleusercontent.com/9iLQ5D6LNbHLjKQbwMf1fCXSY6MIlNJey94ywUSil-bgb6ds7AczCSMWCN_gbvWlgqEdCC-x=s900-c-k-c0x00ffffff-no-rj",
         "https://w7.pngwing.com/pngs/999/669/png-transparent-dog-funny-animal-xchng-high-definition-video-glasses-dog-glass-wine-glass-image-file-formats.png",
@@ -17,9 +18,8 @@ chrome.runtime.onMessage.addListener(async (request, sender, response) => {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr2ml5OBvLXrggHZ2JIuWJ90r1guQW2A23lwGmqTkCQQ&s"
         ]
         changeImg(linkImgCat)
-}
-}
-)
+    }})
+
 console.log("Je suis laaaaaaaaaa");
 
 

@@ -5,9 +5,9 @@
     "version": "0.0.1",
     "permissions": ["alarms", "notifications", "storage"], 
     "icons":{
-        "16": "Images/sablier.png",
-        "48": "Images/sablier.png",
-        "128": "Images/sablier.png"
+        "16": "Images/sieste.png",
+        "48": "Images/sieste.png",
+        "128": "Images/sieste.png"
     },
     
       "background": {
@@ -16,7 +16,7 @@
   
     "action": {
         "default_popup":"popup.html",
-        "permissions": ["activeTab", "scripting","tabs"]
+        "permissions": ["activeTab", "scripting","tabs", "runtime", "storage"]
         
     },
     "content_scripts": [
