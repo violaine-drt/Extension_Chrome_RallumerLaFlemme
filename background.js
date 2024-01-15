@@ -10,9 +10,9 @@ chrome.alarms.onAlarm.addListener(() => {
     chrome.action.setBadgeText({ text: '' });
     chrome.notifications.create({
       type: 'basic',
-      iconUrl: 'Images/coffeeCup.png',
-      title: "C'est l'heure de la pause",
-      message: "Everyday I'm Guzzlin'!",
+      iconUrl: 'Images/paresseux1.png',
+      title: "C'est l'heure de la pause !",
+      message: "Va marcher, boire un thé/café, ou tout simplement te changer les idées.",
       buttons: [{ title: "Prendre ma pause" }],
       priority: 0
     },
@@ -22,7 +22,8 @@ chrome.alarms.onAlarm.addListener(() => {
       );
     console.log("on set le timer") 
     console.log(timeOutID) 
-    timeOutID = setTimeout(fonctionTest,10000);
+    timeOutID = setTimeout(callChangeImg,10000);
+    timeOutTxtID=setTimeout(callChangeTxt,20000);
     //setTimer()
   });
 
@@ -38,16 +39,23 @@ chrome.alarms.onAlarm.addListener(() => {
 chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
   // on vérifie l'index =0 car c'est le seul bouton créé dans la notif
   if (notifId===myNotificationID && btnIndex===0) {
-    cancelTimeout(timeOutID)
+    clearTimeout(timeOutID)
     chrome.notifications.clear(myNotificationID)
   }  
 })   
 
 
 
-  async function fonctionTest(){
+  async function callChangeImg(){
     console.log("le test OK")
     const [tab] = await chrome.tabs.query({ active: true });
     const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
+    console.log(response)
+  }
+
+  async function callChangeTxt(){
+    console.log("je passe ici aussi ")
+    const [tab] = await chrome.tabs.query({ active: true });
+    const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_TEXT" }); 
     console.log(response)
   }

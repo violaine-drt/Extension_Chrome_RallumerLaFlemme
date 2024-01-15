@@ -1,7 +1,8 @@
 {
     "manifest_version":3 ,
-    "name": "Contre Productive",
-    "description": "Il faut faire bcp de siestes",
+    "name": "Rallumer la flemme",
+    "description": "Rappelez-vous que nous sommes des êtres humains, et non des machines. 
+                    Notre corps et notre esprit ont besoin de temps pour se reposer",
     "version": "0.0.1",
     "permissions": ["alarms", "notifications", "storage"], 
     "icons":{

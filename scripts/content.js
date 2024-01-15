@@ -19,6 +19,9 @@ chrome.runtime.onMessage.addListener(async (request, sender, response) => {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr2ml5OBvLXrggHZ2JIuWJ90r1guQW2A23lwGmqTkCQQ&s"
         ]
         changeImg(linkImgCat)
+    }
+    if (request.action == "CHANGE_TEXT"){
+        changeTxt()
     }})
 
 console.log("Je suis laaaaaaaaaa");
@@ -37,6 +40,25 @@ function changeImg(imgAnimal) {
             images[i].srcset= imgAnimal[randImg];
         }
     }
+}
+
+function changeTxt(){
+    console.log("coucou tu es bien dans la fonction changeTxt")
+    console.log("je test ce que je reçois dans span")
+    const span = document.getElementsByTagName("span")
+    const para =document.getElementsByTagName("p")
+    console.log(span)
+    for (let i=0;i<para.length;i++)
+        {
+            para[i].innerHTML= "C'est l'heure de la sieste";
+        }
+    for (let i=0;i<span.length;i++)
+        {
+            span[i].innerHTML= "zzzZZZZ";
+        }
+            
+    
+    
 }
 
 
