@@ -19,7 +19,8 @@ chrome.runtime.onMessage.addListener(async (request, sender, response) => {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr2ml5OBvLXrggHZ2JIuWJ90r1guQW2A23lwGmqTkCQQ&s"
         ]
         changeImg(linkImgCat)
-    }})
+    }
+})
 
 console.log("Je suis laaaaaaaaaa");
 
@@ -38,5 +39,4 @@ function changeImg(imgAnimal) {
         }
     }
 }
-
 

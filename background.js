@@ -38,16 +38,34 @@ chrome.alarms.onAlarm.addListener(() => {
 chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
   // on vérifie l'index =0 car c'est le seul bouton créé dans la notif
   if (notifId===myNotificationID && btnIndex===0) {
-    cancelTimeout(timeOutID)
+    clearTimeout(timeOutID)
     chrome.notifications.clear(myNotificationID)
   }  
 })   
 
-
-
   async function fonctionTest(){
     console.log("le test OK")
-    const [tab] = await chrome.tabs.query({ active: true });
-    const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
-    console.log(response)
+    chrome.storage.sync.get(["animal"]).then(async (result) => {
+      if(result.animal=="dog"){
+        console.log("The animal is dog.")
+        const [tab] = await chrome.tabs.query({ active: true });
+        const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
+        console.log(response)
+      };
+      if(result.animal=="cat"){
+        console.log("The animal is cat.")
+        const [tab] = await chrome.tabs.query({ active: true });
+        const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_CAT" }); 
+        console.log(response)
+      };
+    });
   }
+
+  chrome.runtime.onMessage.addListener(async (request, sender, response) => {
+    console.log(request);
+    console.log(request.action)
+    if (request.action == "CLEAR_TIMEOUT") {
+      clearTimeout(timeOutID)
+      console.log("Timeout is cleared !")
+    }
+  })
