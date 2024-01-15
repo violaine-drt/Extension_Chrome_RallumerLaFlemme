@@ -7,13 +7,14 @@ function setAlarm(event) {
   chrome.action.setBadgeBackgroundColor({ color: '#3D5954' });
   chrome.alarms.create("mainAlarm",{ delayInMinutes: minutes });
   chrome.storage.sync.set({ minutes: minutes });
-  window.close();
+  //window.close();
 }
 
 
-function clearAlarm() {
+async function clearAlarm(){
   chrome.action.setBadgeText({ text: '' });
   chrome.alarms.clearAll();
+  const response = await chrome.runtime.sendMessage({action: "CLEAR_TIMEOUT"});
   window.close();
 }
 
@@ -43,12 +44,13 @@ document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
 
 // Gère le remplacement des images de la page (lien avec content)
 
+
 const btnDog = document.getElementById("buttonDog")
 if (btnDog) {
   btnDog.onclick = async function() {
     console.log("je teste des choses")
-    const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-    const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" });   
+    chrome.storage.sync.set({ animal: "dog" })
+    window.close()
   }
 }
 
@@ -56,8 +58,8 @@ const btnCat = document.getElementById("buttonCat")
 if (btnCat) {
   btnCat.onclick = async function() {
     console.log("je teste des choses 2")
-    const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-    const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_CAT" });   
+    chrome.storage.sync.set({ animal: "cat" })
+    window.close()
   }
 }
  
