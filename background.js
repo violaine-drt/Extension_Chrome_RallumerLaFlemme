@@ -10,9 +10,9 @@ chrome.alarms.onAlarm.addListener(() => {
     chrome.action.setBadgeText({ text: '' });
     chrome.notifications.create({
       type: 'basic',
-      iconUrl: 'Images/coffeeCup.png',
-      title: "C'est l'heure de la pause",
-      message: "Everyday I'm Guzzlin'!",
+      iconUrl: 'Images/paresseux1.png',
+      title: "C'est l'heure de la pause !",
+      message: "Va marcher, boire un thé/café, ou tout simplement te changer les idées.",
       buttons: [{ title: "Prendre ma pause" }],
       priority: 0
     },
@@ -22,7 +22,8 @@ chrome.alarms.onAlarm.addListener(() => {
       );
     console.log("on set le timer") 
     console.log(timeOutID) 
-    timeOutID = setTimeout(fonctionTest,10000);
+    timeOutID = setTimeout(callChangeImg,10000);
+    timeOutTxtID=setTimeout(callChangeTxt,20000);
     //setTimer()
   });
 
@@ -45,9 +46,36 @@ chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
 
 
 
-  async function fonctionTest(){
+  async function callChangeImg(){
     console.log("le test OK")
+    chrome.storage.sync.get(["animal"]).then(async (result) => {
+      if(result.animal=="dog"){
+        console.log("The animal is dog.")
+        const [tab] = await chrome.tabs.query({ active: true });
+        const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
+        console.log(response)
+      };
+      if(result.animal=="cat"){
+        console.log("The animal is cat.")
+        const [tab] = await chrome.tabs.query({ active: true });
+        const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_CAT" }); 
+        console.log(response)
+      };
+    });
+  }
+
+  async function callChangeTxt(){
+    console.log("je passe ici aussi ")
     const [tab] = await chrome.tabs.query({ active: true });
-    const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
+    const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_TEXT" }); 
     console.log(response)
   }
+
+  chrome.runtime.onMessage.addListener(async (request, sender, response) => {
+    console.log(request);
+    console.log(request.action)
+    if (request.action == "CLEAR_TIMEOUT") {
+      clearTimeout(timeOutID)
+      console.log("Timeout is cleared !")
+    }
+  })
