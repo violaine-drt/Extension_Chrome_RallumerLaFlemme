@@ -1,13 +1,14 @@
 console.log ("Coucou ici le background")
 
-let timeOutID;
+let timeOutImageID;
 let myNotificationID;
+let timeOutTxtID;
 
 
 // Cette fonction écoute si une ou des alarmes est terminée. Elle déclenche la notification de pause
 chrome.alarms.onAlarm.addListener(() => {
-    
     chrome.action.setBadgeText({ text: '' });
+    //création de la notification
     chrome.notifications.create({
       type: 'basic',
       iconUrl: 'Images/paresseux1.png',
@@ -16,36 +17,29 @@ chrome.alarms.onAlarm.addListener(() => {
       buttons: [{ title: "Prendre ma pause" }],
       priority: 0
     },
+    //on affecte à myNotificationID la valeur de l'identifiant de notification
       (notifId)=> {
         myNotificationID = notifId;
       }
       );
-    console.log("on set le timer") 
-    console.log(timeOutID) 
-    timeOutID = setTimeout(callChangeImg,10000);
-    timeOutTxtID=setTimeout(callChangeTxt,20000);
-    //setTimer()
+    console.log("On set le timer") 
+    // Déclenche les deux timers une fois la notification créée
+    timeOutImageID = setTimeout(callChangeImg,10000);
+    timeOutTxtID = setTimeout(callChangeTxt,20000);
   });
 
-// Cette fonction prolonge le comportement de l'extension quand le bouton est cliqué
-  // chrome.notifications.onButtonClicked.addListener(async () => {
-  //   const item = await chrome.storage.sync.get(['minutes']);
-  //   chrome.action.setBadgeText({ text: 'ON' });
-  //   chrome.alarms.create({ delayInMinutes: item.minutes });
-  //   console.log("Fonction de prolongation marche")
-  // });
 
-// Cette fonction permet l'arrêt du second timer
+// Cette fonction gère le bouton "Prendre ma pause" de la notification et reset toutes les tempos
 chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
   // on vérifie l'index =0 car c'est le seul bouton créé dans la notif
   if (notifId===myNotificationID && btnIndex===0) {
-    clearTimeout(timeOutID)
+    clearTimeout(timeOutImageID)
+    clearTimeout(timeOutTxtID)
     chrome.notifications.clear(myNotificationID)
   }  
 })   
 
-
-
+//Fonction qui envoie l'action CHANGE IMAGE et est exécutée par la fin du timer
   async function callChangeImg(){
     console.log("le test OK")
     chrome.storage.sync.get(["animal"]).then(async (result) => {
@@ -64,6 +58,7 @@ chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
     });
   }
 
+//Fonction qui envoie l'action CHANGE TEXT et est exécutée par la fin du timer
   async function callChangeTxt(){
     console.log("je passe ici aussi ")
     const [tab] = await chrome.tabs.query({ active: true });
@@ -71,11 +66,14 @@ chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
     console.log(response)
   }
 
-  chrome.runtime.onMessage.addListener(async (request, sender, response) => {
-    console.log(request);
-    console.log(request.action)
-    if (request.action == "CLEAR_TIMEOUT") {
-      clearTimeout(timeOutID)
-      console.log("Timeout is cleared !")
-    }
-  })
+//A tester : gère le reset des tempo par le clic du bouton cancel
+chrome.runtime.onMessage.addListener(async (request, sender, response) => {
+  console.log(request);
+  console.log(request.action)
+  if (request.action == "CLEAR_TIMEOUT") {
+    clearTimeout(timeOutImageID)
+    clearTimeout(timeOutTxtID)
+    chrome.notifications.clear(myNotificationID)
+    console.log("Timeout is cleared !")
+  }
+})

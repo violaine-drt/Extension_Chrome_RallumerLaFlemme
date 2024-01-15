@@ -1,5 +1,6 @@
 console.log("ici, vous êtes dans le content")
 
+//Ecoute quelle action (définie dans popup.js) est déclenchée 
 chrome.runtime.onMessage.addListener(async (request, sender, response) => {
     console.log(request);
     console.log(request.action)
@@ -24,10 +25,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, response) => {
         changeTxt()
     }})
 
-console.log("Je suis laaaaaaaaaa");
-
-
-
+//Cette fonction utilisée ci-dessus modifie aléatoirement les images de la page à partir d'un tableau d'images
 function changeImg(imgAnimal) {
         const images =document.getElementsByTagName("img")
         console.log(images)
@@ -42,9 +40,8 @@ function changeImg(imgAnimal) {
     }
 }
 
+//Utilisée ci-dessus, elle cible les paragraphes et span dans le html et les modifie 
 function changeTxt(){
-    console.log("coucou tu es bien dans la fonction changeTxt")
-    console.log("je test ce que je reçois dans span")
     const span = document.getElementsByTagName("span")
     const para =document.getElementsByTagName("p")
     console.log(span)
@@ -55,10 +52,7 @@ function changeTxt(){
     for (let i=0;i<span.length;i++)
         {
             span[i].innerHTML= "zzzZZZZ";
-        }
-            
-    
-    
+        }  
 }
 
 
