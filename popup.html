@@ -2,29 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link href="style.css" rel="stylesheet" />
   </head>
 
   <body>
-    <h1>Choisissez un animal </h1>
-    <button id="buttonDog" type="button"> 
-      <img src="https://yt3.googleusercontent.com/9iLQ5D6LNbHLjKQbwMf1fCXSY6MIlNJey94ywUSil-bgb6ds7AczCSMWCN_gbvWlgqEdCC-x=s900-c-k-c0x00ffffff-no-rj" alt="" height="150" >
-      Chien 
-    </button>
-    <button id="buttonCat" type="button"> 
-      <img src="https://cloudfront-eu-central-1.images.arcpublishing.com/lexpress/VQ6QDWLMKFGCXFORD36RA6RZ7I.jpg" 
-      alt="" height="150">
-      Chat 
-    </button>
+    <div id="popup">
+      <div id="titlePopup"><h1> RALLUMEZ LA FLEMME !</h1></div>
+      <div id="text1"> <span>Halte aux cadences infernales ! <br> 
+        Relâchez la pression et décidez quand vous mettrez votre cerveau et votre écran en pause. <br> <br>
+        Pause dans :
+        </span></div>
 
-  <!-- Boutons contenant une valeur récupérée ensuite pour gérer fonction alarme -->
+      <!-- Boutons contenant une valeur récupérée ensuite pour gérer fonction alarme -->
+      <div id="positionBtnTime">
+        <button id="sampleMinute" value="0.1" class="btnTime">15 minutes</button>
+        <button id="min15" value="15" class="btnTime">30 Minutes</button>
+        <button id="min30" value="30" class="btnTime">45 Minutes</button>
+        <button id="min60" value="30" class="btnTime">60 Minutes</button>
+        <button id="cancelAlarm" class="btnTime">Cancel Alarm</button>
+      </div>
+      
+      <div id="text2"><span>Choisissez votre animal préféré </span></div> 
+      <div id="positionBtnAnimal">
+        <button id="buttonDog" type="button" class="buttonAnimal"> 
+          <!--<img src="https://yt3.googleusercontent.com/9iLQ5D6LNbHLjKQbwMf1fCXSY6MIlNJey94ywUSil-bgb6ds7AczCSMWCN_gbvWlgqEdCC-x=s900-c-k-c0x00ffffff-no-rj" alt="" height="150" > -->
+          Chien 
+        </button>
+        <button id="buttonCat" type="button" class="buttonAnimal"> 
+          <!-- <img src="https://cloudfront-eu-central-1.images.arcpublishing.com/lexpress/VQ6QDWLMKFGCXFORD36RA6RZ7I.jpg" 
+          alt="" height="150">-->
+         Chat 
+        </button>
+      </div>
 
-    <button id="sampleMinute" value="0.5">Sample minute</button>
-    <button id="min15" value="15">15 Minutes</button>
-    <button id="min30" value="30">30 Minutes</button>
-    <button id="cancelAlarm">Cancel Alarm</button>
-
-    
+      
+    </div>
     <script src="popup.js">
     </script>
   </body>
+
 </html>

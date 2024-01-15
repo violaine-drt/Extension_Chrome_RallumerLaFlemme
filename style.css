@@ -1,0 +1,74 @@
+
+#popup {
+    width: 439px;
+    height: 560px;
+    display:flow;
+    background-color: #F4EFEA;
+    margin:0px;
+}
+
+#titlePopup{
+    background-color: #3D5954;
+    margin:0px;
+    padding:0px;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 65px;
+}
+
+#text1{
+  text-align:center;
+  margin:10px;
+  height:100px;
+}
+
+#positionBtnTime{
+    width: 100%;
+    height: 261px;
+}
+
+#text2{
+  text-align:center;
+  margin:auto;
+  height:40px;
+}
+
+#positionBtnAnimal{
+    width: 100%;
+    height: 114px;
+}
+
+.btnTime {
+    border-radius: 15px;
+    background-color: #82B39B;
+    border:1px gray solid;
+    width: 112px;
+    height: 47px;
+    margin-top:10px;
+    margin-right:40px;
+    margin-left:55px;
+    margin-bottom:10px;
+}
+
+.btnTime:hover {
+    background-color: #64917b  ;
+    color: white;
+}
+
+.buttonAnimal {
+    border-radius: 15px;
+    border:1px gray solid;
+    background-color: #E8CFCC;
+    width: 112px;
+    height: 47px;
+    margin-top:0px;
+    margin-right:40px;
+    margin-left:55px;
+    margin-bottom:0px;
+}
+
+.buttonAnimal:hover {
+    background-color: #e2a7a1  ;
+    color: white;
+}

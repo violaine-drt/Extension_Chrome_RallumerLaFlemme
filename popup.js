@@ -1,12 +1,5 @@
 console.log("Coucou ici la popup")
 
-async function fonctionTest(){
-  console.log("le test OK")
-  const [tab] = await chrome.tabs.query({ active: true });
-  const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
-  console.log(response)
-}
-
 // Les fonctions setAlarm et setSecondAlarm créent des alarmes et transforment la valeur des boutons en temps.
 function setAlarm(event) {
   const minutes = parseFloat(event.target.value);
@@ -29,9 +22,9 @@ function clearAlarm() {
 // console.log(typeof(rappel))
 
 
-//Fonction de timer à partir de la valeur du bouton cliquéé
-const timerValue = document.getElementById('sampleMinute').value*60000;
-function setTimer() {setTimeout(fonctionTest,timerValue + 10000)};
+//Fonction de timer à partir de la valeur du bouton cliquéé ancienne version
+// const timerValue = document.getElementById('sampleMinute').value*60000;
+// function setTimer() {setTimeout(fonctionTest,timerValue + 10000)};
 
 // Sont récupérés les clicks des boutons de la popup. 
 //La fonction setAlarm déclenche un timer à partir de la valeur des boutons.
@@ -43,7 +36,6 @@ document.getElementById('sampleMinute').addEventListener('click', setAlarm);
 document.getElementById('min15').addEventListener('click', setAlarm);
 document.getElementById('min30').addEventListener('click', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
-document.getElementById('sampleMinute').addEventListener('click', setTimer());
 
 
 

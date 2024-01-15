@@ -1,7 +1,8 @@
 console.log("ici, vous êtes dans le content")
 
 chrome.runtime.onMessage.addListener(async (request, sender, response) => {
-    // console.log(request);
+    console.log(request);
+    console.log(request.action)
     if (request.action == "CHANGE_IMAGE_DOG") {
         
         let linkImgDog=[
