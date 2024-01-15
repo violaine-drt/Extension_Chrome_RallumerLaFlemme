@@ -38,7 +38,7 @@ chrome.alarms.onAlarm.addListener(() => {
 chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
   // on vérifie l'index =0 car c'est le seul bouton créé dans la notif
   if (notifId===myNotificationID && btnIndex===0) {
-    cancelTimeout(timeOutID)
+    clearTimeout(timeOutID)
     chrome.notifications.clear(myNotificationID)
   }  
 })   
