@@ -16,6 +16,7 @@ Face aux injonctions de la société qui nous poussent à être toujours plus pr
 Il est important de se rappeler que nous sommes des êtres humains, et non des machines. Notre corps et notre esprit ont besoin de temps pour se reposer et se ressourcer. Prendre du temps pour soi, pour se détendre, pour faire des activités que l'on aime est essentiel pour maintenir un équilibre de vie sain. L'extension peut nous aider à nous rappeler cela et à ne pas succomber à la pression constante de la productivité. En prenant soin de nous-mêmes, nous serons finalement plus heureux.euses et plus productifs.ves à long terme.
 
 **Installation**
+
 * Télécharger le dossier via Github
 * Dé-zipper le dossier optenu si besoin.
 * Ouvrer le navigateur chrome et aller dans la partie "gérer les extensions"
