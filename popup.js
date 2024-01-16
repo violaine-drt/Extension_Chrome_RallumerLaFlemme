@@ -9,7 +9,6 @@ function setAlarm(event) {
   chrome.storage.sync.set({ minutes: minutes });
 }
 
-
 async function clearAlarm(){
   chrome.action.setBadgeText({ text: '' });
   chrome.alarms.clearAll();

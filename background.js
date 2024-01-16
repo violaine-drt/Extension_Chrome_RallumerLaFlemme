@@ -6,7 +6,8 @@ let timeOutTxtID;
 
 
 // Cette fonction écoute si une ou des alarmes est terminée. Elle déclenche la notification de pause
-chrome.alarms.onAlarm.addListener(() => {
+chrome.alarms.onAlarm.addListener((alarm) => {
+    if(alarm.name === "mainAlarm"){
     chrome.action.setBadgeText({ text: '' });
     //création de la notification
     chrome.notifications.create({
@@ -24,9 +25,13 @@ chrome.alarms.onAlarm.addListener(() => {
       );
     console.log("On set le timer") 
     // Déclenche les deux timers une fois la notification créée
-    timeOutImageID = setTimeout(callChangeImg,10000);
-    chrome.action.setBadgeText({ text: 'ON' });
-    chrome.action.setBadgeBackgroundColor({ color: '#3D5954' });
+    chrome.alarms.create("imageAlarm",{ delayInMinutes: 0.1 });
+    }
+    if (alarm.name === "imageAlarm"){callChangeImg()}
+    if(alarm.name === "textAlarm"){callChangeTxt()}
+    // timeOutImageID = setTimeout(callChangeImg,10000);
+    // chrome.action.setBadgeText({ text: 'ON' });
+    // chrome.action.setBadgeBackgroundColor({ color: '#3D5954' });
   });
 
 
@@ -35,8 +40,9 @@ chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
   // on vérifie l'index =0 car c'est le seul bouton créé dans la notif
   if (notifId===myNotificationID && btnIndex===0) {
     chrome.action.setBadgeText({ text: '' });
-    clearTimeout(timeOutImageID)
-    clearTimeout(timeOutTxtID)
+    chrome.alarms.clearAll();
+    //clearTimeout(timeOutImageID)
+    //clearTimeout(timeOutTxtID)
     chrome.notifications.clear(myNotificationID)
   }  
 })   
@@ -63,7 +69,11 @@ chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
         const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
         console.log(response) ;
       }
-      timeOutTxtID = setTimeout(callChangeTxt,10000);
+      //timeOutTxtID = setTimeout(callChangeTxt,10000);
+      chrome.alarms.create("textAlarm",{ delayInMinutes: 0.1 });
+      chrome.alarms.getAll(function(alarms) {
+        console.log(alarms);
+        console.log(alarms[0]);})
     });
   }
 
@@ -81,8 +91,9 @@ chrome.runtime.onMessage.addListener(async (request, sender, response) => {
   console.log(request);
   console.log(request.action)
   if (request.action == "CLEAR_TIMEOUT") {
-    clearTimeout(timeOutImageID)
-    clearTimeout(timeOutTxtID)
+    chrome.alarms.clearAll();
+    //clearTimeout(timeOutImageID)
+    //clearTimeout(timeOutTxtID)
     chrome.action.setBadgeText({ text: '' });
     console.log("test notif")
     console.log(myNotificationID)
