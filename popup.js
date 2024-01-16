@@ -12,7 +12,7 @@ function setAlarm(event) {
 async function clearAlarm(){
   chrome.action.setBadgeText({ text: '' });
   chrome.alarms.clearAll();
-  const response = await chrome.runtime.sendMessage({action: "CLEAR_TIMEOUT"});
+  const response = await chrome.runtime.sendMessage({action: "CLEAR_ALARMS"});
   window.close();
 }
 
