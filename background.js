@@ -79,7 +79,11 @@ chrome.runtime.onMessage.addListener(async (request, sender, response) => {
   if (request.action == "CLEAR_TIMEOUT") {
     clearTimeout(timeOutImageID)
     clearTimeout(timeOutTxtID)
-    chrome.notifications.clear(myNotificationID)
+    console.log("test notif")
+    console.log(myNotificationID)
+    if (myNotificationID!==undefined){
+      chrome.notifications.clear(myNotificationID)
+    }
     console.log("Timeout is cleared !")
   }
 })
