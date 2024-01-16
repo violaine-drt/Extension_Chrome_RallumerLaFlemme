@@ -52,7 +52,7 @@ function changeTxt(){
     for (let i=0;i<span.length;i++)
         {
             span[i].innerHTML= "zzzZZZZ";
-        }  
+        }
 }
 
 
