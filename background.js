@@ -54,7 +54,13 @@ chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
         const [tab] = await chrome.tabs.query({ active: true });
         const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_CAT" }); 
         console.log(response)
-      };
+      }
+      if (result.animal !=="cat" && result.animal !=="dog"){
+        console.log("The animal is nothing")
+        const [tab] = await chrome.tabs.query({ active: true });
+        const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
+        console.log(response) ;
+      }
     });
   }
 

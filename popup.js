@@ -24,8 +24,6 @@ document.getElementById('min30').addEventListener('click', setAlarm);
 document.getElementById('min60').addEventListener('click', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
 
-
-
 // Enregistre le choix de l'animal et fait le lien avec content.js
 const btnDog = document.getElementById("buttonDog")
 if (btnDog) {
