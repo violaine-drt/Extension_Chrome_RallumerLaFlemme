@@ -25,7 +25,6 @@ chrome.alarms.onAlarm.addListener(() => {
     console.log("On set le timer") 
     // Déclenche les deux timers une fois la notification créée
     timeOutImageID = setTimeout(callChangeImg,10000);
-    timeOutTxtID = setTimeout(callChangeTxt,20000);
   });
 
 
@@ -61,6 +60,7 @@ chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
         const response = await chrome.tabs.sendMessage(tab.id, { action: "CHANGE_IMAGE_DOG" }); 
         console.log(response) ;
       }
+      timeOutTxtID = setTimeout(callChangeTxt,30000);
     });
   }
 
