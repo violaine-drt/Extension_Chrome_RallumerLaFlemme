@@ -39,7 +39,7 @@
 
 body{margin:0px !important;}
 
-#cross {
+#closingCross {
     position: absolute;
     color : #F4EFEA;
     font-family: 'Jost';

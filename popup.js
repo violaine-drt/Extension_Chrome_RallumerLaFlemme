@@ -23,7 +23,7 @@ document.getElementById('min15').addEventListener('click', setAlarm);
 document.getElementById('min30').addEventListener('click', setAlarm);
 document.getElementById('min60').addEventListener('click', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
-document.getElementById('btnFermeture').addEventListener('click', ()=>{ window.close() });
+document.getElementById('closingCross').addEventListener('click', ()=>{ window.close() });
 
 // Enregistre le choix de l'animal et fait le lien avec content.js
 const btnDog = document.getElementById("buttonDog")
