@@ -23,7 +23,6 @@ chrome.alarms.onAlarm.addListener((alarm) => {
       }
       );
     console.log("On set le timer") 
-   
     // Déclenche les deux timers une fois la notification créée
     chrome.alarms.create("imageAlarm",{ delayInMinutes: 0.1 });
     }
@@ -48,7 +47,7 @@ chrome.notifications.onButtonClicked.addListener((notifId,btnIndex) => {
 //Fonction qui envoie l'action CHANGE IMAGE et est exécutée par la fin du timer
   async function callChangeImg(){
     console.log("le test OK")
-    chrome.storage.sync.get(["animal"]).then(async (result) => {
+    chrome.storage.session.get(["animal"]).then(async (result) => {
       if(result.animal=="dog"){
         console.log("The animal is dog.")
         const [tab] = await chrome.tabs.query({ active: true });

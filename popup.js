@@ -28,7 +28,7 @@ document.getElementById('closingCross').addEventListener('click', ()=>{ window.c
 const btnDog = document.getElementById("buttonDog")
 if (btnDog) {
   btnDog.onclick = async function() {
-    chrome.storage.sync.set({ animal: "dog" })
+    chrome.storage.session.set({ animal: "dog" })
     window.close()
   }
 }
@@ -36,7 +36,7 @@ if (btnDog) {
 const btnCat = document.getElementById("buttonCat")
 if (btnCat) {
   btnCat.onclick = async function() {
-    chrome.storage.sync.set({ animal: "cat" })
+    chrome.storage.session.set({ animal: "cat" })
     window.close()
   }
 }
