@@ -1,4 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/S8GYURhL)
+
 
 Rallumez la Flemme est une extension de navigateur chrome.
 C'est un projet de trois étudiantes d'Ada Tech school effectué sur 7 jours.
